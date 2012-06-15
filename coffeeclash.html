@@ -1,0 +1,51 @@
+<head>
+  <title>CoffeeClash</title>
+</head>
+
+<body>
+  <div id="outer">
+    <header>
+      <h1>CoffeeClash</h1>
+    </header>
+    {{> leaderboard}}
+  </div>
+</body>
+
+<template name="leaderboard">
+  <div class="leaderboard">
+    {{#each players}}
+      {{> player}}
+    {{/each}}
+  </div>
+
+  {{#if selected_name}}
+  <div class="details">
+    <div class="name">{{selected_name}}</div>
+    <input type="button" class="inc" value="Drink a cup" />
+  </div>
+  {{/if}}
+
+  {{#unless selected_name}}
+  <div class="none">Click a person to select</div>
+  {{> playerform}}
+  {{/unless}}
+
+
+</template>
+
+<template name="player">
+  <div class="player {{selected}}">
+    <span class="name">{{name}}</span>
+    <span class="score">{{numberOfCupsToday cups}}</span>
+  </div>
+</template>
+
+<template name="playerform">
+  <div class="playerform">
+    <form action="javascript:void(0)">
+      <label for="player_name">Add player</label>
+      <input name="player_name">{{selected}}</input>
+      <input type="submit" value="Add!">
+    </form>
+  </div>
+</template>
